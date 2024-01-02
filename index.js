@@ -4,11 +4,28 @@ document.addEventListener("DOMContentLoaded",()=>{
     const taskList=document.getElementById("taskList");
 
 
-     // Check if there are tasks in local storage and display them on the page
     addTask.addEventListener("click",()=>{
         const taskText=taskInput.value.trim();
         console.log("clicked"+taskText);
+        const taskItem = document.createElement("li");
+        taskItem.innerHTML = `
+          
+          <span>${taskText}</span>
+          <button class="deleteBtn">Delete</button>
+         
+        `;
+        taskInput.value="";
+        taskList.appendChild(taskItem);
     })
+
+taskList.addEventListener("click",(event)=>{
+  if(event.target.classList.contains("deleteBtn")){
+    const taskItem=event.target.parentElement;
+    taskList.removeChild(taskItem);
+  }
+
+})
+   
 
      
 
